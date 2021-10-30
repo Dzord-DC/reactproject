@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  height: 450px
+
 }
 
 .App-logo {
@@ -35,4 +37,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+.messeges{
+  border: 1px solid #61dafb;
+  height: 90%;
+  overflow-y: scroll;
+}
+.inputText{
+  width: 70%;
+  height: 26px;
+  border: 1px solid #282c34;
+  border-radius: 0;
+  outline:none
+}
+.inputBut{
+  height: 30px;
+  border: 1px solid #282c34;
+  border-radius: 0;
 }
