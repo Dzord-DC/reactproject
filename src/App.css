@@ -38,10 +38,23 @@
     transform: rotate(360deg);
   }
 }
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  height: inherit;
+}
+.itemList{
+  width: auto;
+}
+.messegBox{
+  display: flex;
+  height: inherit;
+}
 .messeges{
   border: 1px solid #61dafb;
-  height: 90%;
+  width: 83%;
   overflow-y: scroll;
+  height: inherit;
 }
 .inputText{
   width: 70%;
