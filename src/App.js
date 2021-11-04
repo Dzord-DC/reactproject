@@ -1,54 +1,63 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import { MessegeList } from './component/MessegeList/MessegeList';
+import Button from '@mui/material/Button';
+import { TextField } from '@mui/material';
+import ItemList from './component/ItemList/ItemList';
+
 // import { Message } from './component/Message/Messege';
 
 function App() {
-  let [text, setText] = useState('')
-  let autor = "Вы"
+  const listAutor =useState([{id:10, autor:'Бот1'},{id:11, autor:'Бот2'},{id:12, autor:'Бот3'}])
+  const [text, setText] = useState('')
+  const autor = "Вы"
   const [arrayMes, setArrayMes] = useState([])
   const hendleChange = (e) => {
     setText(e.target.value)
   }
   const hendleClick = (e) => {
     e.preventDefault()
-    autor = "Вы"
     const id =arrayMes.length
-    const arrayMesseges = {id, autor, text}
-    arrayMes.push(arrayMesseges)
-    setArrayMes(arrayMes)
+    const newMesseges = {id, autor, text}
+    setArrayMes((prevArrayMes) => [...prevArrayMes, newMesseges])
     setText("")
   }
 
-  let outputMes = arrayMes.map(item=>{
-    return <p key={item.id}>
-      <span>{item.autor}: </span>
-      <span>{item.text}</span>
-    </p>
-  })
-
   useEffect(()=>{
-    if (arrayMes.length > 0) {
-      if (arrayMes[arrayMes.length-1].autor === "Вы"){
-        const autor = "Бот"
-        const text = "Cообщение"
-        const id = arrayMes.length
-        const arrayMesseges = {id, autor, text}
-        arrayMes.push(arrayMesseges)
-        setArrayMes(arrayMes)
+    if (arrayMes.length > 0 && arrayMes[arrayMes.length-1].autor === "Вы"){
+        const newMesseges = {id: arrayMes.length, autor:'Бот', text: "Cообщение"}
+        setArrayMes((prevArrayMes) => [...prevArrayMes, newMesseges])
       }
-    }
     setText("")
   },[arrayMes.length])
 
+ // Автофокус при любой непонятной ситуации 
+  useEffect(()=> {
+    document.getElementById('standard-basic').focus()
+  })
+
+
   return (
     <div className="App">
+      <div className='container'>
+      <div className="messegBox">
+      <ItemList messegList = {listAutor[0]}/>
       <div className = "messeges">
-        {outputMes}
-      </div>
+        
+        <MessegeList messeges= {arrayMes}/>
+        </div>
+      </div> 
       <form>
-        <input type="text" value={text} onChange={hendleChange} className="inputText"/>
-        <button  onClick={hendleClick} type='submit' className="inputBut">Отправить</button>
+      <TextField id="standard-basic" 
+      label="Сообшение"
+       variant="standard" 
+       value={text} 
+       onChange={hendleChange} 
+       className="inputText"
+      />
+        <Button variant='contained' type='submit' onClick={hendleClick}>Отправить</Button>
       </form>
+      </div>
     </div>
   );
 }
