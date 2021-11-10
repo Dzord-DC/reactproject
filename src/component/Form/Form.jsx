@@ -12,8 +12,7 @@ export const Form = ({onSendMessage})=>{
     const hendleClick = (e) => {
         e.preventDefault()
         const id = Math.random()*1000 / Math.random()*10
-        console.log(id)
-        onSendMessage({text, autor, id})
+        onSendMessage({id, autor, text})
         setText("")
       }
 
