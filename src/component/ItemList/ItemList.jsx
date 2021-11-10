@@ -4,13 +4,16 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import CommentIcon from '@mui/icons-material/Comment';
 import IconButton from '@mui/material/IconButton';
+import './ItemList.css'
+import {  NavLink } from 'react-router-dom';
+
 
 export default function ItemList({messegList}) {
   return (
     <List sx={{ width: 'auto', maxWidth: 360, bgcolor: 'background.paper' }}>
       {messegList.map((item) => (
+        <NavLink className='chat-link' style={({isActive})=> ({ backgroundColor: isActive? 'gainsboro': 'white'})} to= {`/chats/${item.id}`}  key={item.id}>
         <ListItem
-          key={item.id}
           disableGutters
           secondaryAction={
             <IconButton>
@@ -19,7 +22,7 @@ export default function ItemList({messegList}) {
           }
         >
           <ListItemText primary={` ${item.autor}`} />
-        </ListItem>
+        </ListItem> </NavLink>
       ))}
     </List>
   );
