@@ -1,13 +1,16 @@
-import React, { Profiler } from 'react';
+import React from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { ChatList } from './component/ChatList';
 import Chats from './component/Chats';
 import { Home } from './component/Home';
-import { Profel } from './component/Profel';
+import { Profile } from './component/Profile';
+import { store } from './store';
 
 
 export const App = ()=> (
   <div className='container'>
+  <Provider store={store}>
   <BrowserRouter>
   <ul>
     <li>
@@ -23,7 +26,7 @@ export const App = ()=> (
 
   <Routes>
     <Route path="/" element={<Home />}/>
-    <Route path="/profel" element={<Profel />}/>
+    <Route path="/profel" element={<Profile />}/>
     <Route path="chats">
       <Route index element={<ChatList/>}/> 
       <Route path=":chatId" element={<Chats/>}/>  
@@ -31,5 +34,6 @@ export const App = ()=> (
     <Route path="*" element={<h2>404</h2>}/>
   </Routes>
   </BrowserRouter>
+  </Provider>
   </div>
 )
