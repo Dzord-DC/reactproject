@@ -1,25 +1,29 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import './Chats.css';
 import { MessegeList } from '../MessegeList/MessegeList';
 import { Form } from '../Form/Form';
 import { ChatList } from '../ChatList';
 import { Navigate, useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMessages } from '../../store/messages/actions';
 
-function Chats() {
-  const [arrayMes, setArrayMes] = useState({chat1:[],chat2:[],chat3:[]})
+  export const Chats = ()=> {
+    const dispatch = useDispatch()
+    const arrayMes = useSelector(state=> state.messages)
   const { chatId } = useParams();
   const handleSendMessage = useCallback((newMessege) => {
-    //setArrayMes(prevArrayMes => [...arrayMes, newMessege])
-    setArrayMes((prevArrayMes) => ({...prevArrayMes, [chatId]: [...prevArrayMes[chatId], newMessege]}))
-}, [chatId])
+    //setArrayMes((prevArrayMes) => ({...prevArrayMes, [chatId]: [...prevArrayMes[chatId], newMessege]}))
+    console.log(chatId, newMessege)
+    dispatch(addMessages(chatId, newMessege))
+}, arrayMes, chatId)
 
   useEffect(()=>{
     if (arrayMes[chatId]?.length > 0 && 
         arrayMes[chatId][arrayMes[chatId]?.length-1].autor === "Вы"){
         const newMessege = {id: Math.random()*1000, autor:'Бот', text: "Cообщение"}
-        setArrayMes((prevArrayMes) => ({...prevArrayMes, [chatId]: [...prevArrayMes[chatId], newMessege]}))
+        dispatch(addMessages(chatId, newMessege))
       }
-  },[arrayMes, chatId])
+  },arrayMes, chatId)
 
   if (!arrayMes[chatId]){
     return <Navigate replace to="/chats"/>
