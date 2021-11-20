@@ -1,4 +1,4 @@
-import { TOGGEL_CHECKBOX } from "./actions"
+import { CHENGE_NAME, TOGGEL_CHECKBOX } from "./actions"
 
 const initialState = {
     checkbox: false,
@@ -12,6 +12,11 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 checkbox: !state.checkbox
+            };
+            case CHENGE_NAME:
+            return {
+                ...state,
+                name: action.payload
             };
         default: 
         return state;

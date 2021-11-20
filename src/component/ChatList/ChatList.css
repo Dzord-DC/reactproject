@@ -1,0 +1,8 @@
+.chat-link{
+    display: block;
+    padding: 2px;
+    text-decoration: none;
+}
+.linc-box{
+    display: flex;
+}
