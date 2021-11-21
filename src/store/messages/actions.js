@@ -22,3 +22,21 @@ export const deleteMessages = (chatId, idToDlete) => ({
     type: DELETE_CHAT_MESSAGES,
     payload: {chatId, idToDlete}
 })
+
+let timeout
+export const addMessageWithReply = (chatId, newMessage) => (dispatch) => {
+    dispatch(addMessages(chatId, newMessage ))
+
+    if (newMessage.autor === "Вы"){
+        if (timeout){
+            clearTimeout(timeout)
+        }
+        timeout = setTimeout(()=>{
+            const botMessage = {
+                id: Math.random()*1000, 
+                autor:'Бот', 
+                text: "Cообщение"}
+            dispatch(addMessages(chatId, botMessage))
+        }, 1000)
+      }
+}
