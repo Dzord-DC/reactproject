@@ -8,10 +8,11 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDispatch, useSelector } from "react-redux";
 import { addChat, deleteChat } from "../../store/chat/actions";
 import { addChatMessages, deleteChatMessages } from "../../store/messages/actions";
+import { selectCats } from "../../store/chat/selectors";
 //*import ItemList from "../ItemList/ItemList"
 
 export const ChatList = ()=> {
-    const chatList = useSelector(state => state.chats)
+    const chatList = useSelector(selectCats)
     const dispatch = useDispatch()
     //const arrayMes = useSelector(state=> state.messages)
     const [newChatName, setNewChatName] = useState('')
@@ -22,7 +23,8 @@ export const ChatList = ()=> {
         e.preventDefault();
         const newId ='chat' + Math.random()*100;
         dispatch(addChat({id:newId,autor:newChatName}))   
-        dispatch(addChatMessages(newId))    
+        dispatch(addChatMessages(newId))
+        setNewChatName('')    
     }
     const hendleDeleteChat = (id)=>{
         dispatch(deleteChat(id))

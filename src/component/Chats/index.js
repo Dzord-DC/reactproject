@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import './Chats.css';
 import { MessegeList } from '../MessegeList/MessegeList';
 import { Form } from '../Form/Form';
@@ -6,24 +6,25 @@ import { ChatList } from '../ChatList';
 import { Navigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessages } from '../../store/messages/actions';
+import { selectMessages } from '../../store/messages/selector';
 
   export const Chats = ()=> {
+    const { chatId } = useParams();   
+    const arrayMes = useSelector(selectMessages)
     const dispatch = useDispatch()
-    const arrayMes = useSelector(state=> state.messages)
-  const { chatId } = useParams();
-  const handleSendMessage = useCallback((newMessege) => {
-    //setArrayMes((prevArrayMes) => ({...prevArrayMes, [chatId]: [...prevArrayMes[chatId], newMessege]}))
-    console.log(chatId, newMessege)
+ 
+  const handleSendMessage = (newMessege) => {
     dispatch(addMessages(chatId, newMessege))
-}, arrayMes, chatId)
+}
 
   useEffect(()=>{
     if (arrayMes[chatId]?.length > 0 && 
         arrayMes[chatId][arrayMes[chatId]?.length-1].autor === "Вы"){
         const newMessege = {id: Math.random()*1000, autor:'Бот', text: "Cообщение"}
-        dispatch(addMessages(chatId, newMessege))
+        //dispatch(addMessages(chatId, newMessege))
+        handleSendMessage(newMessege)
       }
-  },arrayMes, chatId)
+  },[chatId, arrayMes])
 
   if (!arrayMes[chatId]){
     return <Navigate replace to="/chats"/>

@@ -1,4 +1,3 @@
-import { accordionActionsClasses } from "@mui/material";
 import { ADD_CHAT, DELETE_CHAT } from "./actions";
 
 const initialChats = [];
