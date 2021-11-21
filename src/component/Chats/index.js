@@ -5,7 +5,7 @@ import { Form } from '../Form/Form';
 import { ChatList } from '../ChatList';
 import { Navigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessages } from '../../store/messages/actions';
+import { addMessages, addMessageWithReply } from '../../store/messages/actions';
 import { selectMessages } from '../../store/messages/selector';
 
   export const Chats = ()=> {
@@ -14,17 +14,17 @@ import { selectMessages } from '../../store/messages/selector';
     const dispatch = useDispatch()
  
   const handleSendMessage = (newMessege) => {
-    dispatch(addMessages(chatId, newMessege))
+    dispatch(addMessageWithReply(chatId, newMessege))
 }
 
-  useEffect(()=>{
+ /* useEffect(()=>{
     if (arrayMes[chatId]?.length > 0 && 
         arrayMes[chatId][arrayMes[chatId]?.length-1].autor === "Вы"){
         const newMessege = {id: Math.random()*1000, autor:'Бот', text: "Cообщение"}
         //dispatch(addMessages(chatId, newMessege))
         handleSendMessage(newMessege)
       }
-  },[chatId, arrayMes])
+  },[chatId, arrayMes])*/
 
   if (!arrayMes[chatId]){
     return <Navigate replace to="/chats"/>
