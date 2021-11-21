@@ -11,10 +11,9 @@ export const messagesReducer = (state = initialMessages, {type, payload }) => {
 
         case ADD_MESSAGES:
                 return  {...state, [payload.chatId]: [...state[payload.chatId], payload.newMessage]}
-        case DELETE_CHAT_MESSAGES:
-            return (payload)=>{
+        case DELETE_CHAT_MESSAGES:{
                     const newMessages = {...state}
-                    delete newMessages[payload]
+                    delete newMessages[payload.chatId]
                     return newMessages
             }
             case DELETE_MESSAGES: {
