@@ -1,4 +1,5 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { Api } from '../API';
 import { ChatList } from '../ChatList';
 import Chats from '../Chats';
 import { Home } from '../Home';
@@ -14,6 +15,9 @@ export const Router = () => (
       <Link to="/profel"> Profel</Link>
     </li>
     <li>
+      <Link to="/API"> API</Link>
+    </li>
+    <li>
       <Link to="/chats">Chats</Link>
     </li>
   </ul>
@@ -21,6 +25,7 @@ export const Router = () => (
   <Routes>
     <Route path="/" element={<Home />}/>
     <Route path="/profel" element={<Profile />}/>
+    <Route path="/API" element={<Api />}/>
     <Route path="chats">
       <Route index element={
         <ChatList />}/> 
