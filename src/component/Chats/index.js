@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
 import './Chats.css';
 import { MessegeList } from '../MessegeList/MessegeList';
 import { Form } from '../Form/Form';
 import { ChatList } from '../ChatList';
 import { Navigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessages, addMessageWithReply } from '../../store/messages/actions';
+import { addMessageWithReply } from '../../store/messages/actions';
 import { selectMessages } from '../../store/messages/selector';
 
   export const Chats = ()=> {
