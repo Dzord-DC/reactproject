@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 import { profileReducer } from "./profile/reducer";
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
+import { articlesReducer } from "./api/reducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -17,7 +18,8 @@ const config = {
 const persistedReducer = persistReducer(config,combineReducers({
     chats: chatsReducer,
     messages: messagesReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    articles: articlesReducer
 }) );
 
 export const store = createStore(
