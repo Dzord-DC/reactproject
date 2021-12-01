@@ -1,9 +1,17 @@
 import { CircularProgress } from "@mui/material"
+<<<<<<< HEAD
 import { useEffect } from "react"
+=======
+import { useEffect, useState } from "react"
+>>>>>>> dz
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { getArticles } from "../../store/api/action"
 import { selectArticlesError, selectArticlesList, selectArticlesLoading } from "../../store/api/selector"
+<<<<<<< HEAD
+=======
+import { apiUrl } from "../../utils/constants"
+>>>>>>> dz
 
 
 export const Api = () => {
