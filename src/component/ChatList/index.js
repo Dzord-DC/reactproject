@@ -9,9 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addChat, addChatWithFb, deleteChat, initChatsTraking } from "../../store/chat/actions";
 import { addChatMessages, deleteChatMessages } from "../../store/messages/actions";
 import { selectCats } from "../../store/chat/selectors";
-import { onValue, set } from "@firebase/database";
-import { chatsRef, getChatMsgsById, getChatRefById } from "../../services/firebase";
-
 export const ChatList = ()=> {
     const chatList = useSelector(selectCats)
     const dispatch = useDispatch()

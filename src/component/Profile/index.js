@@ -6,8 +6,6 @@ import { chengeName, toggleCheckbox } from "../../store/profile/actions";
 
 export const Profile =()=> {
     
-
-    //const state = store.getState();
     const state = useSelector(state => state);
     const dispatch = useDispatch()
     const [value, setValue] = useState(state.profile.name) 
@@ -30,7 +28,6 @@ export const Profile =()=> {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-       // dispatch(chengeName(value))
        set(userRef, {name: value} )
     }
     const hendleSignOut = async()=>{

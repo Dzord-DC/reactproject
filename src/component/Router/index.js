@@ -2,11 +2,8 @@ import { onValue } from '@firebase/database';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-<<<<<<< HEAD
 import { auth, messagesRef } from '../../services/firebase';
 import { signIn, signOut } from '../../store/profile/actions';
-=======
->>>>>>> dz
 import { Api } from '../API';
 import { ChatList } from '../ChatList';
 import Chats from '../Chats';
@@ -60,7 +57,6 @@ return(
   </ul>
 
   <Routes>
-<<<<<<< HEAD
     <Route path="/" element={<PublicOutlet />}>
       <Route path="" element={<Home />}/>
     </Route>
@@ -68,10 +64,8 @@ return(
       <Route path="" element={<SignUp />}/>
     </Route>
     <Route path="/profel" element={<PrivateRoute><Profile /></PrivateRoute>}/>
-=======
     <Route path="/" element={<Home />}/>
     <Route path="/profel" element={<Profile />}/>
->>>>>>> dz
     <Route path="/API" element={<Api />}/>
     <Route path="chats">
       <Route index element={
