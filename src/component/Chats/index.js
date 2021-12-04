@@ -1,5 +1,5 @@
 import './Chats.css';
-import { MessegeList } from '../MessegeList/MessegeList';
+import { MessageList } from '../MessageList/MessageList';
 import { Form } from '../Form/Form';
 import { ChatList } from '../ChatList';
 import { Navigate, useParams } from 'react-router';
@@ -23,7 +23,7 @@ import { useCallback } from 'react';
       <div className="messegBox">
       <ChatList />
       <div className = "messeges">
-        <MessegeList messeges= {msgs[chatId]}/>
+        <MessageList messages= {msgs[chatId]}/>
         </div>
       </div> 
       <Form onSendMessage={handleSendMessage}/>
